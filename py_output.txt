@@ -1,0 +1,21 @@
+Linear Algebra Solver Tool (Python)
+------------------------------------
+Input file: examples/datasets/PRSA_data_2010.1.1-2014.12.31.csv
+
+Matrix size detected: 41757 x 3
+Loaded matrix A and vector b successfully.
+
+System type: Overdetermined system
+Method: Least Squares
+
+Solution Vector x
+------------------
+x[0] = 4.9080812801
+x[1] = -5.3660326174
+x[2] = 0.1539890536
+
+Timing Breakdown
+----------------
+File Load Time : 0.084744 seconds
+Solver Time    : 0.003966 seconds
+Total Time     : 0.088734 seconds

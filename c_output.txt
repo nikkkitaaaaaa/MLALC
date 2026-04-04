@@ -1,0 +1,23 @@
+Linear Algebra Solver Tool (LU / QR)
+------------------------------------
+Input file: beijing_clean.txt
+
+Matrix size detected: 5000 x 4
+
+Loaded matrix A and vector b successfully.
+
+System type: Overdetermined system (Least squares)
+Method selected: QR decomposition
+
+Solution Vector x:
+------------------
+x[0] = -5.1857806130
+x[1] = 3.7961085429
+x[2] = -2.9818619825
+x[3] = 3181.7802471404
+
+Timing Breakdown
+----------------
+File Load Time : 0.006659 seconds
+Solver Time    : 1.814306 seconds
+Total Time     : 1.821038 seconds
