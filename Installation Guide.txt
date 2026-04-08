@@ -1,0 +1,229 @@
+# Installing and Using the MLALC Linear Algebra Library on Windows
+
+This guide explains how to install **Git**, **MinGW (GCC compiler)**, download the **MLALC library**, build it, and install it **system-wide on Windows**.
+
+---
+
+# 1. Install Git
+
+1. Open a web browser.
+2. Go to:
+   https://git-scm.com/download/win
+3. Download **Git for Windows**.
+4. Run the installer.
+5. During installation:
+
+   * Keep all **default settings**
+   * Click **Next → Next → Install**
+
+After installation, open:
+
+Git Bash
+
+Verify installation:
+
+```
+git --version
+```
+
+Example output:
+
+```
+git version 2.x.x
+```
+
+---
+
+# 2. Install MinGW-w64 (GCC Compiler)
+
+The MLALC library requires a C compiler.
+
+1. Download MinGW-w64 from
+   https://www.mingw-w64.org/downloads/
+
+2. Install with the following settings:
+
+Architecture: x86_64
+Threads: posix
+Exception: seh
+
+3. Install MinGW in:
+
+```
+C:\mingw64
+```
+
+---
+
+# 3. Add GCC to the System PATH
+
+1. Press **Windows Key**
+2. Search **Environment Variables**
+3. Click **Edit the system environment variables**
+4. Click **Environment Variables**
+5. Under **System Variables**, select **Path**
+6. Click **Edit**
+7. Click **New** and add:
+
+```
+C:\mingw64\bin
+```
+
+8. Click **OK** to save.
+
+---
+
+# 4. Verify GCC Installation
+
+Open **Git Bash** and run:
+
+```
+gcc --version
+```
+
+Example output:
+
+```
+gcc (MinGW) 13.x.x
+```
+
+---
+
+# 5. Download the MLALC Library
+
+Open **Git Bash** and run:
+
+```
+git clone https://github.com/nikkkitaaaaaa/MLALC.git
+```
+
+Enter the project folder:
+
+```
+cd MLALC
+```
+
+---
+
+# 6. Build the Library
+
+Compile the library:
+
+```
+make
+```
+
+This command compiles the source files and creates:
+
+```
+libmlalc.a
+```
+
+---
+
+# 7. Install the Library System-Wide
+
+Copy header files to the MinGW include directory:
+
+```
+cp include/*.h /mingw64/include/
+```
+
+Copy the library file to the MinGW library directory:
+
+```
+cp libmlalc.a /mingw64/lib/
+```
+
+Now the library is installed system-wide for the GCC compiler.
+
+Installed locations:
+
+```
+/mingw64/include/matrix.h
+/mingw64/lib/libmlalc.a
+```
+
+---
+
+# 8. Test the Installation
+
+Create a test program:
+
+```
+nano test.c
+```
+
+Example program:
+
+```
+#include <matrix.h>
+#include <stdio.h>
+
+int main()
+{
+    matrix *A = matrix_create(2,2);
+
+    if(!A){
+        printf("Matrix allocation failed\n");
+        return 1;
+    }
+
+    printf("Matrix created: %d x %d\n", A->rows, A->cols);
+
+    matrix_free(A);
+
+    return 0;
+}
+```
+
+---
+
+# 9. Compile the Test Program
+
+Compile using the MLALC library:
+
+```
+gcc test.c -lmlalc
+```
+
+Run the program:
+
+```
+./a.exe
+```
+
+---
+
+# 10. Expected Result
+
+If the installation is successful, the program will print:
+
+```
+Matrix created: 2 x 2
+```
+
+This confirms that the **MLALC library is installed and linked correctly**.
+
+---
+
+# Summary of Commands
+
+```
+git clone https://github.com/nikkkitaaaaaa/MLALC.git
+cd MLALC
+make
+cp include/*.h /mingw64/include/
+cp libmlalc.a /mingw64/lib/
+gcc test.c -lmlalc
+```
+
+---
+
+# Final Result
+
+The MLALC library is now installed system-wide and can be used in any C program by compiling with:
+
+```
+gcc program.c -lmlalc
+```
